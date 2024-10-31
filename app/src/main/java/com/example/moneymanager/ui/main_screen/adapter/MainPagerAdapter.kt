@@ -8,7 +8,7 @@ import com.example.moneymanager.ui.statistic_screen.StatisticFragment
 import com.example.moneymanager.ui.wallet_screen.WalletFragment
 
 class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 3  // Number of tabs
+    override fun getItemCount(): Int = 4  // Number of tabs
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
