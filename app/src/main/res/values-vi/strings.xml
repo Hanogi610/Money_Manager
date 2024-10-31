@@ -56,5 +56,7 @@
     <string name="confirm_your_pass_code">Xác nhận mã PIN của bạn</string>
     <string name="select_account">Chọn tài khoản</string>
     <string name="incorrect_pass_code">Mã PIN không đúng</string>
-    <string name="Manager">Quản lý (%1$d)</string>
+    <string name="manager">Quản lý (%1$d)</string>
+    <string name="add_wallet">Thêm ví</string>
+    <string name="goal">Mục tiêu</string>
 </resources>

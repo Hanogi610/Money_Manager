@@ -83,7 +83,8 @@ class MainViewModel @Inject constructor(
                         typeWallet = WalletType.GENERAL,
                         iconId = "ic_general",
                         colorId = "color_general",
-                        name = "General"
+                        name = "General",
+                        isExcluded = false
                     )
                 )
 
@@ -102,7 +103,8 @@ class MainViewModel @Inject constructor(
                                 typeWallet = WalletType.GENERAL,
                                 iconId = "ic_general",
                                 colorId = "color_general",
-                                name = "General"
+                                name = "General",
+                                isExcluded = false
                             )
                         )
                     )

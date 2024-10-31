@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="@string/balance_amount"
+        android:text="@string/money_amount"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textStyle="bold"
