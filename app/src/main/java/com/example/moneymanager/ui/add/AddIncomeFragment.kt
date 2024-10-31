@@ -18,7 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.moneymanager.R
-import com.example.moneymanager.data.entity.AddIncomeAndExpense
+import com.example.moneymanager.data.entity.AddTransfer
 import com.example.moneymanager.databinding.FragmentAddIncomeBinding
 import kotlinx.coroutines.launch
 
@@ -76,7 +76,7 @@ class AddIncomeFragment : Fragment() {
                 val category = binding.spCategory.selectedItem.toString()
                 val typeOfExpenditure = "Income"
                 val idWallet = 1L
-                val incomeAndExpense = AddIncomeAndExpense(amount, description, category, typeOfExpenditure, idWallet, imagePath ?: "", date, time)
+                val incomeAndExpense = AddTransfer()
                 viewModel.saveIncomeAndExpense(incomeAndExpense)
             } else {
                 Log.e("AddExpenseFragment", "Amount is empty")

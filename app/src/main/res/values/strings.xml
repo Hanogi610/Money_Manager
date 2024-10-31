@@ -67,6 +67,7 @@
     <string name="calendar">Calendar</string>
     <string name="statistic">Statistic</string>
     <string name="detail_day">Detail</string>
+    <string name="select_category">Select Category</string>
 
     <string-array name="wallet_options">
         <item>Cash</item>
@@ -97,4 +98,5 @@
     <string name="manager">Manager (%1$d)</string>
     <string name="add_wallet">Add wallet</string>
     <string name="goal">Goal</string>
+
 </resources>
