@@ -44,6 +44,7 @@
     <string name="please_enter_6_digit_passcode">请输入6位数密码</string>
     <string name="passcode_saved">密码已保存</string>
     <string name="detail_day">详情</string>
+    <string name="select_category">选择类别</string>
 
     <!-- Currency Names and Symbols -->
     <string name="balance">"余额: "</string>

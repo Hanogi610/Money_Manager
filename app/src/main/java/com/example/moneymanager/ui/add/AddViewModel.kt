@@ -8,7 +8,8 @@ import android.icu.util.Calendar
 import android.os.Environment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moneymanager.data.entity.AddIncomeAndExpense
+import com.example.moneymanager.data.entity.AddTransfer
+import com.example.moneymanager.data.entity.Transfer
 import com.example.moneymanager.data.repository.TransferRepository
 import com.example.moneymanager.di.AppDispatchers
 import com.example.moneymanager.di.Dispatcher
@@ -30,8 +31,8 @@ class AddViewModel @Inject constructor(
     @Dispatcher(AppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
 )  : ViewModel() {
 
-    private val _incomeAndExpense = MutableStateFlow(AddIncomeAndExpense())
-    val incomeAndExpense: StateFlow<AddIncomeAndExpense> get() = _incomeAndExpense
+    private val _addTransfer = MutableStateFlow(AddTransfer())
+    val addTransfer: StateFlow<AddTransfer> get() = _addTransfer
 
     private val _selectedDate = MutableStateFlow<String>("")
     val selectedDate: StateFlow<String> get() = _selectedDate
@@ -110,19 +111,34 @@ class AddViewModel @Inject constructor(
         _currentDateTime.value = Pair(dateFormat.format(currentDate), timeFormat.format(currentDate))
     }
 
-    fun saveIncomeAndExpense(incomeAndExpense: AddIncomeAndExpense) {
+    fun saveIncomeAndExpense(addTransfer: AddTransfer) {
         viewModelScope.launch(ioDispatcher) {
-            val newIncomeAndExpense = incomeAndExpense
-            if (newIncomeAndExpense.amount > 0) {
+            val newAddTransfer = addTransfer
+            if (newAddTransfer.amount > 0) {
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-                val transferDate = dateFormat.parse(newIncomeAndExpense.transferDate)
-                val transferTime = timeFormat.parse(newIncomeAndExpense.transferTime)
+                val transferDate = dateFormat.parse(newAddTransfer.transferDate)
+                val transferTime = timeFormat.parse(newAddTransfer.transferTime)
+                repository.insertTransfer(
+                    Transfer(
+                        fromWallet = newAddTransfer.fromWallet,
+                        toWallet = newAddTransfer.toWallet,
+                        amount = newAddTransfer.amount,
+                        fee = newAddTransfer.fee,
+                        description = newAddTransfer.description,
+                        linkImg = newAddTransfer.linkImg,
+                        transferDate = transferDate!!.time,
+                        transferTime = transferTime!!.time,
+                        typeOfExpenditure = newAddTransfer.typeOfExpenditure,
+                        typeDebt = newAddTransfer.typeDebt,
+                        typeIconCategory = newAddTransfer.typeIconCategory,
+                        typeColor = newAddTransfer.typeColor,
+                        typeIconWallet = newAddTransfer.typeIconWallet
+                    )
+                )
             }
         }
     }
-
-
 
     override fun onCleared(){
         super.onCleared()

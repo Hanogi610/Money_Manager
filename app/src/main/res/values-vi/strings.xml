@@ -44,6 +44,7 @@
     <string name="please_enter_6_digit_passcode">Vui lòng nhập mã PIN 6 chữ số</string>
     <string name="passcode_saved">Mã PIN đã được lưu</string>
     <string name="detail_day">Chi tiết</string>
+    <string name="select_category">Chọn danh mục</string>
 
     <!-- Currency Names and Symbols -->
     <string name="balance">"Số dư: "</string>
