@@ -40,7 +40,7 @@
     <string name="initial_amount">Initial Amount</string>
     <string name="cash_wallet_prompt">How much money do you have in your cash wallet?</string>
     <string name="amount_hint" translatable="false">%1$s 0</string>
-    <string name="balance_amount" translatable="false">%1$s %2$.3f</string>
+    <string name="money_amount" translatable="false">%1$s %2$.3f</string>
     <string name="balance">Balance: </string>
     <string name="add_expense">Expense</string>
     <string name="income">Income</string>
@@ -94,5 +94,7 @@
         <item>Gallery</item>
     </string-array>
     <string name="add_fab" translatable="false">Add FAB</string>
-    <string name="Manager">Manager (%1$d)</string>
+    <string name="manager">Manager (%1$d)</string>
+    <string name="add_wallet">Add wallet</string>
+    <string name="goal">Goal</string>
 </resources>

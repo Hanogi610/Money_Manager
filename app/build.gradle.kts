@@ -70,6 +70,8 @@ dependencies {
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+    implementation("ir.mahozad.android:pie-chart:0.7.0")
 }
 kapt {
     correctErrorTypes = true

@@ -17,7 +17,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/rounded_border">
+            android:background="@drawable/rounded_border"
+            android:layout_margin="8dp">
 
             <!-- Wallet TextView (left-aligned) -->
             <TextView
@@ -40,7 +41,7 @@
                 android:id="@+id/managerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Manager"
+                android:text="@string/manager"
                 android:textColor="@color/cyan"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
@@ -60,9 +61,57 @@
                 android:layout_marginTop="8dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_border"
+            app:layout_constraintTop_toBottomOf="@id/budgetSection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <!-- Goal TextView (left-aligned) -->
+            <TextView
+                android:id="@+id/goalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goal"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/goalManagerTextView"
+                app:layout_constraintHorizontal_chainStyle="spread_inside" />
 
+            <!-- Manager TextView (right-aligned) -->
+            <TextView
+                android:id="@+id/goalManagerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/manager"
+                android:textColor="@color/cyan"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/goalTextView" />
 
+            <!-- PieChart for Goal completion -->
+            <ir.mahozad.android.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/goalTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

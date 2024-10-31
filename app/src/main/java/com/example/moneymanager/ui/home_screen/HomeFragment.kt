@@ -34,11 +34,11 @@ class HomeFragment : Fragment() {
                 mainViewModel.currentAccount.collect {
                     it?.let {
                         val balance =
-                            it.wallets.filter { wallet -> wallet.typeWallet == WalletType.GENERAL }
+                            it.wallets.filter { wallet -> wallet.typeWallet == WalletType.GENERAL && wallet.isExcluded == false}
                                 .sumOf { wallet -> wallet.amount }
                         val currencySymbol = getString(it.account.currency.symbolRes)
                         binding.balanceAmount.text =
-                            getString(R.string.balance_amount, currencySymbol, balance)
+                            getString(R.string.money_amount, currencySymbol, balance)
                     }
                 }
             }
