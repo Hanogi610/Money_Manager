@@ -76,7 +76,7 @@ class AddIncomeFragment : Fragment() {
                 val category = binding.spCategory.selectedItem.toString()
                 val typeOfExpenditure = "Income"
                 val idWallet = 1L
-                val incomeAndExpense = AddTransfer(amount, description, category, typeOfExpenditure, idWallet, imagePath ?: "", date, time)
+                val incomeAndExpense = AddTransfer()
                 viewModel.saveIncomeAndExpense(incomeAndExpense)
             } else {
                 Log.e("AddExpenseFragment", "Amount is empty")
