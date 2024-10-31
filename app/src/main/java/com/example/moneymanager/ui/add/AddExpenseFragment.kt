@@ -1,13 +1,9 @@
 package com.example.moneymanager.ui.add
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,13 +18,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.moneymanager.R
-import com.example.moneymanager.data.entity.AddIncomeAndExpense
+import com.example.moneymanager.data.entity.AddTransfer
 import com.example.moneymanager.databinding.FragmentAddExpenseBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 
 @AndroidEntryPoint
 class AddExpenseFragment : Fragment() {
@@ -111,12 +104,32 @@ class AddExpenseFragment : Fragment() {
                 val time = binding.etTime.text.toString()
                 val date = binding.etDate.text.toString()
                 val getbitmap = viewModel.getBitmap()
-                val imagePath = viewModel.saveDrawableToAppStorage(requireContext(), getbitmap)
-                val category = binding.spCategory.selectedItem.toString()
+                var linkimg = viewModel.saveDrawableToAppStorage(requireContext(), getbitmap)
+                if(linkimg == null){
+                    linkimg = ""
+                }
+                val type_icon_category = binding.spCategory.selectedItem.toString()
                 val typeOfExpenditure = "Expense"
-                val idWallet = 1L
-                val incomeAndExpense = AddIncomeAndExpense(amount, description, category, typeOfExpenditure, idWallet, imagePath ?: "", date, time)
-                viewModel.saveIncomeAndExpense(incomeAndExpense)
+                val toWallet = 0
+                val fromWallet = 1
+                val typeDebt = ""
+                val typeColor = ""
+                val transfer = AddTransfer(
+                    amount,
+                    description,
+                    typeOfExpenditure,
+                    toWallet.toLong(),
+                    fromWallet.toLong(),
+                    linkimg,
+                    date,
+                    time,
+                    typeDebt,
+                    type_icon_category,
+                    typeColor,
+                    "",
+                    0.0
+                )
+                viewModel.saveIncomeAndExpense(transfer)
             } else {
                 Log.e("AddExpenseFragment", "Amount is empty")
             }

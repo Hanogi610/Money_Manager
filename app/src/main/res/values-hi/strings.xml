@@ -44,6 +44,7 @@
     <string name="please_enter_6_digit_passcode">कृपया 6 अंकों का पासकोड दर्ज करें</string>
     <string name="passcode_saved">पासकोड सहेजा गया</string>
     <string name="detail_day">विस्तार</string>
+    <string name="select_category">श्रेणी चुनें</string>
 
     <!-- Currency Names and Symbols -->
     <string name="balance">"बैलेंस: "</string>
