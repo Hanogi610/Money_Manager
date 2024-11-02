@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.moneymanager.R
 import com.example.moneymanager.core.getCurrencyName
 import com.example.moneymanager.core.getCurrencySymbol
-import com.example.moneymanager.data.entity.enums.Currency
+import com.example.moneymanager.data.model.entity.enums.Currency
 import com.example.moneymanager.databinding.FragmentCurrencySelectionBinding
 import com.example.moneymanager.ui.MainViewModel
 

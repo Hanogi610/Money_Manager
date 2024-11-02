@@ -1,8 +1,10 @@
 package com.example.moneymanager.core
 
 import androidx.room.TypeConverter
-import com.example.moneymanager.data.entity.enums.Currency
-import com.example.moneymanager.data.entity.enums.WalletType
+import com.example.moneymanager.data.model.entity.enums.Currency
+import com.example.moneymanager.data.model.entity.enums.DebtActionType
+import com.example.moneymanager.data.model.entity.enums.GoalInputType
+import com.example.moneymanager.data.model.entity.enums.WalletType
 import java.sql.Time
 import java.util.Calendar
 import java.util.Date
@@ -63,6 +65,42 @@ class CurrencyTypeConverter {
             Calendar.SATURDAY -> "Thứ Bảy"
             else -> "Không xác định"
         }
+    }
+}
+
+class GoalInputTypeConverter {
+    @TypeConverter
+    fun fromGoalInputType(goalInputType: GoalInputType): String {
+        return goalInputType.name
+    }
+
+    @TypeConverter
+    fun toGoalInputType(value: String): GoalInputType {
+        return GoalInputType.valueOf(value)
+    }
+}
+
+class DebtActionTypeConverter {
+    @TypeConverter
+    fun fromDebtType(debtActionType: DebtActionType): String {
+        return debtActionType.name
+    }
+
+    @TypeConverter
+    fun toDebtType(value: String): DebtActionType {
+        return DebtActionType.valueOf(value)
+    }
+}
+
+class DebtTypeConverter {
+    @TypeConverter
+    fun fromDebtType(debtActionType: DebtActionType): String {
+        return debtActionType.name
+    }
+
+    @TypeConverter
+    fun toDebtType(value: String): DebtActionType {
+        return DebtActionType.valueOf(value)
     }
 }
 

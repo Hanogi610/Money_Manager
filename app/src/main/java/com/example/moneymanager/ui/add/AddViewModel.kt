@@ -8,8 +8,8 @@ import android.icu.util.Calendar
 import android.os.Environment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moneymanager.data.entity.AddTransfer
-import com.example.moneymanager.data.entity.Transfer
+import com.example.moneymanager.data.model.entity.AddTransfer
+import com.example.moneymanager.data.model.entity.Transfer
 import com.example.moneymanager.data.repository.TransferRepository
 import com.example.moneymanager.di.AppDispatchers
 import com.example.moneymanager.di.Dispatcher

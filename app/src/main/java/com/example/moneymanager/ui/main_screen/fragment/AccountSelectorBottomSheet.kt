@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moneymanager.data.entity.AccountWithWallet
+import com.example.moneymanager.data.model.entity.AccountWithWallet
 import com.example.moneymanager.databinding.AccountSelectionBottomSheetBinding
 import com.example.moneymanager.ui.main_screen.adapter.AccountAdapter
 

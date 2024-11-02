@@ -1,4 +1,4 @@
-package com.example.moneymanager.data.entity.enums
+package com.example.moneymanager.data.model.entity.enums
 
 enum class TransferType {
     Income,

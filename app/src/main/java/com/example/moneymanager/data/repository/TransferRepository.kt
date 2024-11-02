@@ -1,7 +1,7 @@
 package com.example.moneymanager.data.repository
 
 import com.example.moneymanager.data.dao.TransferDao
-import com.example.moneymanager.data.entity.Transfer
+import com.example.moneymanager.data.model.entity.Transfer
 import javax.inject.Inject
 
 

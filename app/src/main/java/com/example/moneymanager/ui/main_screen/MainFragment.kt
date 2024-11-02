@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.moneymanager.R
-import com.example.moneymanager.data.entity.AccountWithWallet
+import com.example.moneymanager.data.model.entity.AccountWithWallet
 import com.example.moneymanager.databinding.FragmentMainBinding
 import com.example.moneymanager.ui.MainViewModel
 import com.example.moneymanager.ui.main_screen.adapter.MainPagerAdapter

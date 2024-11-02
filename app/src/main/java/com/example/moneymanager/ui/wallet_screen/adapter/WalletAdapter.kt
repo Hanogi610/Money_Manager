@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moneymanager.R
-import com.example.moneymanager.data.entity.Wallet
+import com.example.moneymanager.data.model.entity.Wallet
 import com.example.moneymanager.databinding.AddNewWalletItemBinding
 import com.example.moneymanager.databinding.WalletItemBinding
 
