@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moneymanager.R
-import com.example.moneymanager.data.entity.Wallet
+import com.example.moneymanager.data.model.entity.Wallet
 import com.example.moneymanager.databinding.FragmentWalletBinding
 import com.example.moneymanager.ui.MainViewModel
 import com.example.moneymanager.ui.wallet_screen.adapter.WalletAdapter
@@ -54,12 +54,12 @@ class WalletFragment : Fragment() {
             }
         }
 
-        binding.pieChart.slices = listOf(
-            PieChart.Slice(0.2f, Color.BLUE),
-            PieChart.Slice(0.4f, Color.MAGENTA),
-            PieChart.Slice(0.3f, Color.YELLOW),
-            PieChart.Slice(0.1f, Color.CYAN)
-        )
+//        binding.pieChart.slices = listOf(
+//            PieChart.Slice(0.2f, Color.BLUE),
+//            PieChart.Slice(0.4f, Color.MAGENTA),
+//            PieChart.Slice(0.3f, Color.YELLOW),
+//            PieChart.Slice(0.1f, Color.CYAN)
+//        )
 
         return binding.root
     }

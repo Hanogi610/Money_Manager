@@ -1,4 +1,4 @@
-package com.example.moneymanager.data.entity
+package com.example.moneymanager.data.model.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import androidx.room.Relation
 import androidx.room.TypeConverters
 import com.example.moneymanager.core.CurrencyTypeConverter
-import com.example.moneymanager.data.entity.enums.Currency
+import com.example.moneymanager.data.model.entity.enums.Currency
 
 @Entity(tableName = "account")
 data class Account(

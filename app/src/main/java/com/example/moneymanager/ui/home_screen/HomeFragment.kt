@@ -10,7 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.moneymanager.R
-import com.example.moneymanager.data.entity.enums.WalletType
+import com.example.moneymanager.data.model.entity.enums.WalletType
 import com.example.moneymanager.databinding.FragmentHomeBinding
 import com.example.moneymanager.ui.MainViewModel
 import kotlinx.coroutines.launch

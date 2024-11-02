@@ -2,7 +2,7 @@ package com.example.moneymanager.ui.wallet_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moneymanager.data.entity.Wallet
+import com.example.moneymanager.data.model.entity.Wallet
 import com.example.moneymanager.data.repository.WalletRepository
 import com.example.moneymanager.di.AppDispatchers
 import com.example.moneymanager.di.Dispatcher
