@@ -18,7 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.moneymanager.R
-import com.example.moneymanager.data.entity.AddTransfer
+import com.example.moneymanager.data.model.entity.AddTransfer
 import com.example.moneymanager.databinding.FragmentAddExpenseBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

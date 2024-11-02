@@ -42,4 +42,12 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideWalletDao(appDatabase: AppDatabase) = appDatabase.walletDao()
+
+    @Provides
+    @Singleton
+    fun provideDebtDao(appDatabase: AppDatabase) = appDatabase.debtDao()
+
+    @Provides
+    @Singleton
+    fun provideDebtTransactionDao(appDatabase: AppDatabase) = appDatabase.debtTransactionDao()
 }

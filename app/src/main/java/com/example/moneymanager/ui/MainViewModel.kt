@@ -2,11 +2,11 @@ package com.example.moneymanager.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moneymanager.data.entity.Account
-import com.example.moneymanager.data.entity.AccountWithWallet
-import com.example.moneymanager.data.entity.Wallet
-import com.example.moneymanager.data.entity.enums.Currency
-import com.example.moneymanager.data.entity.enums.WalletType
+import com.example.moneymanager.data.model.entity.Account
+import com.example.moneymanager.data.model.entity.AccountWithWallet
+import com.example.moneymanager.data.model.entity.Wallet
+import com.example.moneymanager.data.model.entity.enums.Currency
+import com.example.moneymanager.data.model.entity.enums.WalletType
 import com.example.moneymanager.data.repository.AccountRepository
 import com.example.moneymanager.data.repository.WalletRepository
 import com.example.moneymanager.di.AppDispatchers
