@@ -76,6 +76,11 @@
         <item>Mobile Wallet</item>
     </string-array>
 
+    <string-array name="debt_type_options">
+        <item>Payable</item>
+        <item>Receivable</item>
+    </string-array>
+
     <string-array name="category_options">
         <item>Groceries</item>
         <item>Rent</item>
@@ -103,5 +108,8 @@
     <string name="add_goal">Add Goal</string>
     <string name="add_budget">Add Budget</string>
     <string name="budget">Budget</string>
+    <string name="who_do_you_lend_from">Who do you lend from?</string>
+    <string name="who_do_you_borrow_to">Who do you borrow to?</string>
+    <string name="what_was_it_for">What was it for?</string>
 
 </resources>

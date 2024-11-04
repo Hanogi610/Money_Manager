@@ -16,7 +16,10 @@ interface DebtDao {
     suspend fun insertDebt(debt: Debt) : Long
 
     @Query("SELECT * FROM debt WHERE account_id = :accountId")
-    fun getDebtsByAccountId(accountId: Long): Flow<List<DebtDetail>>
+    fun getDebtsByAccountId(accountId: Long): Flow<List<Debt>>
+
+    @Query("SELECT * FROM debt WHERE id = :debtId")
+    fun getDebtDetailsByDebtId(debtId: Long): Flow<List<DebtDetail>>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun editDebt(debt: Debt)
