@@ -12,10 +12,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneymanager.R
+import com.example.moneymanager.data.model.entity.DebtDetail
 import com.example.moneymanager.data.model.entity.Wallet
 import com.example.moneymanager.databinding.FragmentWalletBinding
 import com.example.moneymanager.ui.MainViewModel
+import com.example.moneymanager.ui.wallet_screen.adapter.DebtAdapter
 import com.example.moneymanager.ui.wallet_screen.adapter.WalletAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import ir.mahozad.android.PieChart
@@ -29,6 +32,7 @@ class WalletFragment : Fragment() {
     private val viewModel: WalletViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var walletAdapter: WalletAdapter
+    private lateinit var debtAdapter: DebtAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -43,6 +47,10 @@ class WalletFragment : Fragment() {
         binding.walletRecyclerView.adapter = walletAdapter
         binding.walletRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
+        debtAdapter = DebtAdapter(requireContext(), currencySymbol, ::onDebtItemClick, ::onAddDebtClick)
+        binding.debtRecyclerView.adapter = debtAdapter
+        binding.debtRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
         mainViewModel.currentAccount.value?.account?.id?.let { viewModel.getWallets(it) }
 
         lifecycleScope.launch {
@@ -50,6 +58,15 @@ class WalletFragment : Fragment() {
                 viewModel.wallets.collect { wallets ->
                     walletAdapter.setWallets(wallets)
                     binding.managerTextView.text = getString(R.string.manager, wallets.size)
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.debts.collect { debts ->
+                    debtAdapter.setDebts(debts)
+                    binding.debtManagerTextView.text = getString(R.string.manager, debts.size)
                 }
             }
         }
@@ -62,6 +79,15 @@ class WalletFragment : Fragment() {
 //        )
 
         return binding.root
+    }
+
+    private fun onDebtItemClick(debtDetail: DebtDetail) {
+        mainViewModel.setCurrentDebt(debtDetail)
+        // Navigate to the debt detail screen
+    }
+
+    private fun onAddDebtClick() {
+        TODO("Not yet implemented")
     }
 
     private fun onAddWalletClick() {

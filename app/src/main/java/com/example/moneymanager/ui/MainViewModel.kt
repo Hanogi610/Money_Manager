@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moneymanager.data.model.entity.Account
 import com.example.moneymanager.data.model.entity.AccountWithWallet
+import com.example.moneymanager.data.model.entity.DebtDetail
 import com.example.moneymanager.data.model.entity.Wallet
 import com.example.moneymanager.data.model.entity.enums.Currency
 import com.example.moneymanager.data.model.entity.enums.WalletType
@@ -43,12 +44,19 @@ class MainViewModel @Inject constructor(
     private val _passcode = MutableStateFlow("")
     val passcode: StateFlow<String> get() = _passcode
 
-//    init {
-//        getAccount()
-//        if(accounts.value.isNotEmpty()) {
-//            setCurrentAccount(accounts.value[0])
-//        }
-//    }
+    private val _currentWallet = MutableStateFlow<Wallet?>(null)
+    val currentWallet: StateFlow<Wallet?> get() = _currentWallet
+
+    private val _currentDebt = MutableStateFlow<DebtDetail?>(null)
+    val currentDebt: StateFlow<DebtDetail?> get() = _currentDebt
+
+    fun setCurrentWallet(wallet: Wallet) {
+        _currentWallet.value = wallet
+    }
+
+    fun setCurrentDebt(debt: DebtDetail) {
+        _currentDebt.value = debt
+    }
 
     fun setAddingAccount(addingAccount: AddingAccount) {
         _addingAccount.value = addingAccount
