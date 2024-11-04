@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moneymanager.R
-import com.example.moneymanager.data.model.entity.DebtDetail
+import com.example.moneymanager.data.model.entity.Debt
 import com.example.moneymanager.databinding.AddNewItemBinding
 import com.example.moneymanager.databinding.DebtItemBinding
 
 class DebtAdapter(
     private val context: Context,
     private val currentCurrencySymbol: String,
-    private val onItemClick: (DebtDetail) -> Unit,
+    private val onItemClick: (Debt) -> Unit,
     private val onAddNewClick: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var debts: List<DebtDetail> = emptyList()
+    private var debts: List<Debt> = emptyList()
 
     override fun getItemViewType(position: Int): Int {
         return if (position == debts.size) TYPE_ADD_NEW else TYPE_ITEM
@@ -54,17 +54,17 @@ class DebtAdapter(
 
     inner class DebtViewHolder(val binding: DebtItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(debt: DebtDetail) {
-            binding.debtName.text = debt.debt.name
-            binding.debtDescription.text = debt.debt.description
+        fun bind(debt: Debt) {
+            binding.debtName.text = debt.name
+            binding.debtDescription.text = debt.description
             binding.debtAmount.text = context.getString(
-                R.string.money_amount, currentCurrencySymbol, debt.debt.amount
+                R.string.money_amount, currentCurrencySymbol, debt.amount
             )
             binding.root.setOnClickListener { onItemClick(debt) }
         }
     }
 
-    fun setDebts(debts: List<DebtDetail>) {
+    fun setDebts(debts: List<Debt>) {
         val diffCallback = DebtDiffCallback(this.debts, debts)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         this.debts = debts
@@ -78,13 +78,13 @@ class DebtAdapter(
 }
 
 class DebtDiffCallback(
-    private val oldList: List<DebtDetail>, private val newList: List<DebtDetail>
+    private val oldList: List<Debt>, private val newList: List<Debt>
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldList.size
     override fun getNewListSize(): Int = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].debt.id == newList[newItemPosition].debt.id
+        return oldList[oldItemPosition].id == newList[newItemPosition].id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneymanager.R
+import com.example.moneymanager.data.model.entity.Debt
 import com.example.moneymanager.data.model.entity.DebtDetail
 import com.example.moneymanager.data.model.entity.Wallet
 import com.example.moneymanager.databinding.FragmentWalletBinding
@@ -81,7 +82,7 @@ class WalletFragment : Fragment() {
         return binding.root
     }
 
-    private fun onDebtItemClick(debtDetail: DebtDetail) {
+    private fun onDebtItemClick(debtDetail: Debt) {
         mainViewModel.setCurrentDebt(debtDetail)
         // Navigate to the debt detail screen
     }

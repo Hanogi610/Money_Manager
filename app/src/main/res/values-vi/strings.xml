@@ -64,4 +64,7 @@
     <string name="add_goal">Thêm Mục Tiêu</string>
     <string name="add_budget">Thêm Ngân Sách</string>
     <string name="budget">"Ngân Sách "</string>
+    <string name="who_do_you_lend_from">Bạn vay từ ai?</string>
+    <string name="who_do_you_borrow_to">Bạn cho ai vay?</string>
+    <string name="what_was_it_for">Nó dùng để làm gì?</string>
 </resources>

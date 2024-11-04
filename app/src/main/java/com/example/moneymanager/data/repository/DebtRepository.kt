@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface DebtRepository {
-    fun getDebtsByAccountId(userId: Long) : Flow<List<DebtDetail>>
+    fun getDebtsByAccountId(userId: Long) : Flow<List<Debt>>
+    fun getDebtDetailsByDebtId(debtId: Long) : Flow<List<DebtDetail>>
     suspend fun insertDebt(debt: Debt) : Long
     suspend fun editDebt(debt: Debt)
     suspend fun deleteDebt(debtId: Long)
@@ -17,8 +18,12 @@ interface DebtRepository {
 class DebtRepositoryImpl @Inject constructor(
     private val debtDao: DebtDao
 ) : DebtRepository {
-    override fun getDebtsByAccountId(userId: Long): Flow<List<DebtDetail>> {
+    override fun getDebtsByAccountId(userId: Long): Flow<List<Debt>> {
         return debtDao.getDebtsByAccountId(userId)
+    }
+
+    override fun getDebtDetailsByDebtId(debtId: Long): Flow<List<DebtDetail>> {
+        return debtDao.getDebtDetailsByDebtId(debtId)
     }
 
     override suspend fun insertDebt(debt: Debt): Long {

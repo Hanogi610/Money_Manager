@@ -64,4 +64,7 @@
     <string name="add_goal">लक्ष्य जोड़ें</string>
     <string name="add_budget">बजट जोड़ें</string>
     <string name="budget">बजट</string>
+    <string name="who_do_you_lend_from">आप किससे उधार लेते हैं?</string>
+    <string name="who_do_you_borrow_to">आप किसे उधार देते हैं?</string>
+    <string name="what_was_it_for">इसका उपयोग किस लिए था?</string>
 </resources>
