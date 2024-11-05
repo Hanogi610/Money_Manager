@@ -6,4 +6,6 @@
     <color name="grey">#D3D3D3</color>
     <color name="bottom_nav_bg">#12000000</color>
     <color name="cyan">#3F9AD7</color>
+    <color name="Theme1_500">#3F9AD7</color>
+    <color name="Brand_Eror">#CB0E0E</color>
 </resources>

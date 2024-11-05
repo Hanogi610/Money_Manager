@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Award",
+    "icon": "IconCategory/IconIncome/Award.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Allowance",
+    "icon": "IconCategory/IconIncome/Allowance.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Dividend",
+    "icon": "IconCategory/IconIncome/Dividend.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Bonus",
+    "icon": "IconCategory/IconIncome/Bonus.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Investment",
+    "icon": "IconCategory/IconIncome/Investment.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Lottery",
+    "icon": "IconCategory/IconIncome/Lottery.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Others",
+    "icon": "IconCategory/IconIncome/Others.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Salary",
+    "icon": "IconCategory/IconIncome/Salary.svg",
+    "type": "Income"
+  },
+  {
+    "name": "Tips",
+    "icon": "IconCategory/IconIncome/Tips.svg",
+    "type": "Income"
+  }
+]

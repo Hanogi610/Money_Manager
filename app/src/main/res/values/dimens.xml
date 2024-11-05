@@ -21,6 +21,14 @@
     <!-- Radius values -->
     <dimen name="radius_small">4dp</dimen>
     <dimen name="radius_medium">8dp</dimen>
+    <dimen name="radius_large">16dp</dimen>
+    <dimen name="radius_xlarge">24dp</dimen>
+    <dimen name="radius_xxlarge">32dp</dimen>
+    <dimen name="radius_xxxlarge">48dp</dimen>
+    <dimen name="radius_xxxxlarge">64dp</dimen>
+    <dimen name="radius_xxxxxlarge">80dp</dimen>
+    <dimen name="radius_xxxxxxlarge">100dp</dimen>
+    <dimen name="radius_xxxxxxxlarge">112dp</dimen>
 
     <!-- Margin values -->
     <dimen name="margin_none">1dp</dimen>
@@ -40,6 +48,8 @@
     <dimen name="search_height">25dp</dimen>
 
     <!-- Padding values -->
+    <dimen name="padding_none">1dp</dimen>
+    <dimen name="padding_micro">2dp</dimen>
     <dimen name="padding_xsmall">4dp</dimen>
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_normal">12dp</dimen>
