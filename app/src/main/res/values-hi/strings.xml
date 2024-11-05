@@ -59,4 +59,9 @@
     <string name="manager">प्रबंधक (%1$d)</string>
     <string name="add_wallet">बटुआ जोड़ें</string>
     <string name="goal">उद्देश्य</string>
+    <string name="debt">कर्ज़</string>
+    <string name="add_debt">कर्ज़ जोड़ें</string>
+    <string name="add_goal">लक्ष्य जोड़ें</string>
+    <string name="add_budget">बजट जोड़ें</string>
+    <string name="budget">बजट</string>
 </resources>

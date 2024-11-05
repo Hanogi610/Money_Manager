@@ -59,4 +59,9 @@
     <string name="manager">经理 (%1$d)</string>
     <string name="add_wallet">添加钱包</string>
     <string name="goal">目标</string>
+    <string name="debt">债务</string>
+    <string name="add_debt">添加债务</string>
+    <string name="add_goal">添加目标</string>
+    <string name="add_budget">添加预算</string>
+    <string name="budget">预算</string>
 </resources>

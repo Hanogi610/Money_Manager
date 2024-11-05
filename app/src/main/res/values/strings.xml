@@ -96,7 +96,12 @@
     </string-array>
     <string name="add_fab" translatable="false">Add FAB</string>
     <string name="manager">Manager (%1$d)</string>
-    <string name="add_wallet">Add wallet</string>
+    <string name="add_wallet">Add Wallet</string>
     <string name="goal">Goal</string>
+    <string name="debt">Debt</string>
+    <string name="add_debt">Add Debt</string>
+    <string name="add_goal">Add Goal</string>
+    <string name="add_budget">Add Budget</string>
+    <string name="budget">Budget</string>
 
 </resources>

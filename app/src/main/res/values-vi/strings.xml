@@ -57,6 +57,11 @@
     <string name="select_account">Chọn tài khoản</string>
     <string name="incorrect_pass_code">Mã PIN không đúng</string>
     <string name="manager">Quản lý (%1$d)</string>
-    <string name="add_wallet">Thêm ví</string>
+    <string name="add_wallet">Thêm Ví</string>
     <string name="goal">Mục tiêu</string>
+    <string name="debt">Nợ</string>
+    <string name="add_debt">Thêm Nợ</string>
+    <string name="add_goal">Thêm Mục Tiêu</string>
+    <string name="add_budget">Thêm Ngân Sách</string>
+    <string name="budget">"Ngân Sách "</string>
 </resources>
