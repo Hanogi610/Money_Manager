@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.icu.util.Calendar
 import android.os.Environment
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moneymanager.data.model.entity.AddTransfer
@@ -119,6 +120,7 @@ class AddViewModel @Inject constructor(
                 val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
                 val transferDate = dateFormat.parse(newAddTransfer.transferDate)
                 val transferTime = timeFormat.parse(newAddTransfer.transferTime)
+                Log.i("AddViewModel", "transferDate: $addTransfer")
                 repository.insertTransfer(
                     Transfer(
                         fromWallet = newAddTransfer.fromWallet,
@@ -130,11 +132,7 @@ class AddViewModel @Inject constructor(
                         transferDate = transferDate!!.time,
                         transferTime = transferTime!!.time,
                         typeOfExpenditure = newAddTransfer.typeOfExpenditure,
-                        typeDebt = newAddTransfer.typeDebt,
-                        typeIconCategory = newAddTransfer.typeIconCategory,
-                        typeColor = newAddTransfer.typeColor,
-                        typeIconWallet = newAddTransfer.typeIconWallet
-                    )
+                        typeIconCategory = newAddTransfer.typeIconCategory,)
                 )
             }
         }

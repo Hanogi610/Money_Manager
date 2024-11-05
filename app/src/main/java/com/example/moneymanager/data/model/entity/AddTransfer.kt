@@ -9,11 +9,8 @@ data class AddTransfer(
     val linkImg: String,
     val transferDate: String,
     val transferTime: String,
-    val typeDebt: String,
     val typeIconCategory: String,
-    val typeColor: String,
-    val typeIconWallet: String,
     val fee: Double,
 ) {
-    constructor() : this(0.0, "", "", 0L, 0L, "", "", "", "", "", "", "", 0.0)
+    constructor() : this(0.0, "", "", 0, 0, "", "", "", "", 0.0)
 }

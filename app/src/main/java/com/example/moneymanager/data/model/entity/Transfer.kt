@@ -12,12 +12,6 @@ import androidx.room.PrimaryKey
             parentColumns = ["id"],
             childColumns = ["from_wallet"],
             onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = Wallet::class,
-            parentColumns = ["id"],
-            childColumns = ["to_wallet"],
-            onDelete = ForeignKey.CASCADE
         )
     ]
 )
@@ -32,9 +26,6 @@ data class Transfer(
     @ColumnInfo(name = "transfer_date") val transferDate: Long,
     @ColumnInfo(name = "transfer_time") val transferTime: Long,
     @ColumnInfo(name = "type_of_expenditure") val typeOfExpenditure: String,
-    @ColumnInfo(name = "type_debt") val typeDebt: String,
     @ColumnInfo(name = "type_icon_category") val typeIconCategory: String,
-    @ColumnInfo(name = "type_color") val typeColor: String,
-    @ColumnInfo(name = "type_icon_wallet") val typeIconWallet: String
 
 )

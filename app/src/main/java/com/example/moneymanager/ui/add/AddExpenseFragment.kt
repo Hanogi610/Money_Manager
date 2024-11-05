@@ -112,7 +112,6 @@ class AddExpenseFragment : Fragment() {
                 val typeOfExpenditure = "Expense"
                 val toWallet = 0
                 val fromWallet = 1
-                val typeDebt = ""
                 val typeColor = ""
                 val transfer = AddTransfer(
                     amount,
@@ -123,10 +122,7 @@ class AddExpenseFragment : Fragment() {
                     linkimg,
                     date,
                     time,
-                    typeDebt,
                     type_icon_category,
-                    typeColor,
-                    "",
                     0.0
                 )
                 viewModel.saveIncomeAndExpense(transfer)

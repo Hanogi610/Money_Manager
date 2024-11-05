@@ -72,11 +72,25 @@ class AddIncomeFragment : Fragment() {
                 val time = binding.etTime.text.toString()
                 val date = binding.etDate.text.toString()
                 val getbitmap = viewModel.getBitmap()
-                val imagePath = viewModel.saveDrawableToAppStorage(requireContext(), getbitmap)
+                var linkimg = viewModel.saveDrawableToAppStorage(requireContext(), getbitmap)
+                if(linkimg == null){
+                    linkimg = ""
+                }
                 val category = binding.spCategory.selectedItem.toString()
                 val typeOfExpenditure = "Income"
                 val idWallet = 1L
-                val incomeAndExpense = AddTransfer()
+                val incomeAndExpense = AddTransfer(
+                    amount,
+                    description,
+                    typeOfExpenditure,
+                    idWallet,
+                    idWallet,
+                    linkimg,
+                    date,
+                    time,
+                    category,
+                    0.0
+                )
                 viewModel.saveIncomeAndExpense(incomeAndExpense)
             } else {
                 Log.e("AddExpenseFragment", "Amount is empty")
