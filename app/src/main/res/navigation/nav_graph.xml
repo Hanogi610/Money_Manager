@@ -196,4 +196,11 @@
         tools:layout="@layout/fragment_detail_day" >
     </fragment>
 
+    <fragment
+        android:id="@+id/selectIncomeExpenseFragment"
+        android:name="com.example.moneymanager.ui.select_category.Select_income_expenseFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_select_income_expense" >
+    </fragment>
+
 </navigation>

@@ -74,13 +74,9 @@ class AddExpenseFragment : Fragment() {
 
 
     fun selectCategory(){
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.category_options,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.spCategory.adapter = adapter
+        binding.etCategory.setOnClickListener {
+            val controller = findNavController()
+            controller.navigate(R.id.selectIncomeExpenseFragment)
         }
     }
 
@@ -108,11 +104,10 @@ class AddExpenseFragment : Fragment() {
                 if(linkimg == null){
                     linkimg = ""
                 }
-                val type_icon_category = binding.spCategory.selectedItem.toString()
+                val type_icon_category = binding.etCategory.text.toString()
                 val typeOfExpenditure = "Expense"
                 val toWallet = 0
                 val fromWallet = 1
-                val typeDebt = ""
                 val typeColor = ""
                 val transfer = AddTransfer(
                     amount,
@@ -123,10 +118,7 @@ class AddExpenseFragment : Fragment() {
                     linkimg,
                     date,
                     time,
-                    typeDebt,
                     type_icon_category,
-                    typeColor,
-                    "",
                     0.0
                 )
                 viewModel.saveIncomeAndExpense(transfer)
