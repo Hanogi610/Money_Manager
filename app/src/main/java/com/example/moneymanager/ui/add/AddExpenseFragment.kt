@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -18,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.moneymanager.R
+import com.example.moneymanager.data.model.CategoryData
 import com.example.moneymanager.data.model.entity.AddTransfer
 import com.example.moneymanager.databinding.FragmentAddExpenseBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -74,9 +76,16 @@ class AddExpenseFragment : Fragment() {
 
 
     fun selectCategory(){
+        val navController = findNavController()
         binding.etCategory.setOnClickListener {
-            val controller = findNavController()
-            controller.navigate(R.id.selectIncomeExpenseFragment)
+            navController.navigate(R.id.selectIncomeExpenseFragment)
+        }
+
+        val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
+        savedStateHandle?.getLiveData<Bundle>("categoryBundle")?.observe(viewLifecycleOwner) { bundle ->
+            val id = bundle.getInt("id")
+            val category = viewModel.getOneCategoryExpense(id)
+            binding.etCategory.setText(category?.name)
         }
     }
 

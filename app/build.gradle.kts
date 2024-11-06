@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation (libs.androidsvg)
     implementation(libs.applandeo.material.calendar.view)
     implementation (libs.gson)
     testImplementation(libs.junit)

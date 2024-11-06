@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken
 
 class CategoryData {
     data class CategoryList(val categorys: List<Category>)
-    data class Category(val id: Int, val name: String, val icon: String, val type: String)
+    data class Category(val id: Int, var name: String, val icon: String, val type: String, var isCheck : Boolean = false)
 
     fun readJsonCategory(content: Context, fileName: String): List<Category> {
         var listCategory = mutableListOf<Category>()

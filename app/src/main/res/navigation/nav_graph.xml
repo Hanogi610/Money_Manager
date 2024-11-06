@@ -198,7 +198,7 @@
 
     <fragment
         android:id="@+id/selectIncomeExpenseFragment"
-        android:name="com.example.moneymanager.ui.select_category.Select_income_expenseFragment"
+        android:name="com.example.moneymanager.ui.select_category.SelectIncomeExpenseFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_select_income_expense" >
     </fragment>
