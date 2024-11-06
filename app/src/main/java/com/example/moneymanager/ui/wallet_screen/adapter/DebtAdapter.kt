@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moneymanager.R
 import com.example.moneymanager.data.model.entity.Debt
+import com.example.moneymanager.data.model.entity.enums.DebtType
 import com.example.moneymanager.databinding.AddNewItemBinding
 import com.example.moneymanager.databinding.DebtItemBinding
 
@@ -55,7 +56,10 @@ class DebtAdapter(
     inner class DebtViewHolder(val binding: DebtItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(debt: Debt) {
-            binding.debtName.text = debt.name
+            binding.debtName.text = if (debt.type == DebtType.PAYABLE) context.getString(
+                R.string.i_owe_s,
+                debt.name
+            ) else context.getString(R.string.i_lend_s, debt.name)
             binding.debtDescription.text = debt.description
             binding.debtAmount.text = context.getString(
                 R.string.money_amount, currentCurrencySymbol, debt.amount

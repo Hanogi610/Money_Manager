@@ -44,6 +44,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainFragment_to_addDebtFragment"
+            app:destination="@id/addDebtFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -194,6 +201,13 @@
         android:name="com.example.moneymanager.ui.detail.DetailDayFragment"
         android:label="fragment_detail_day"
         tools:layout="@layout/fragment_detail_day" >
+    </fragment>
+    <fragment
+        android:id="@+id/addDebtFragment"
+        android:name="com.example.moneymanager.ui.wallet_screen.add_debt.AddDebtFragment"
+        android:label="fragment_add_debt"
+        tools:layout="@layout/fragment_add_debt" >
+
     </fragment>
 
 </navigation>

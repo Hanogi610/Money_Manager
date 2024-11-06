@@ -67,4 +67,7 @@
     <string name="who_do_you_lend_from">आप किससे उधार लेते हैं?</string>
     <string name="who_do_you_borrow_to">आप किसे उधार देते हैं?</string>
     <string name="what_was_it_for">इसका उपयोग किस लिए था?</string>
+    <string name="i_owe_s">मैं %1$s का कर्ज़ी हूँ</string>
+    <string name="i_lend_s">मैंने %1$s उधार दिया है</string>
+
 </resources>

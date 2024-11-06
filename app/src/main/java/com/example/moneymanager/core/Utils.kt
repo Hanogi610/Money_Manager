@@ -3,7 +3,9 @@ package com.example.moneymanager.core
 import android.content.Context
 import androidx.annotation.ColorInt
 import com.example.moneymanager.data.model.entity.enums.Currency
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 // Convert Long to Date
 fun Long.toDate(): Date {
@@ -13,6 +15,19 @@ fun Long.toDate(): Date {
 // Convert Date to Long
 fun Date.toTimestamp(): Long {
     return this.time
+}
+
+fun String.toDateTimestamp(format: String = "dd/MM/yyyy"): Long {
+    val sdf = SimpleDateFormat(format, Locale.getDefault())
+    val date = sdf.parse(this)
+    return date?.time ?: 0L
+}
+
+// Extension function to convert time string to timestamp
+fun String.toTimeTimestamp(format: String = "HH:mm"): Long {
+    val sdf = SimpleDateFormat(format, Locale.getDefault())
+    val time = sdf.parse(this)
+    return time?.time ?: 0L
 }
 
 fun getCurrencyName(context: Context, currency: Currency): String {
