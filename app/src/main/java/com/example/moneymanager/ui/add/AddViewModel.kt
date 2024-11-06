@@ -9,6 +9,7 @@ import android.os.Environment
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moneymanager.data.model.CategoryData
 import com.example.moneymanager.data.model.entity.AddTransfer
 import com.example.moneymanager.data.model.entity.Transfer
 import com.example.moneymanager.data.repository.TransferRepository
@@ -31,6 +32,11 @@ class AddViewModel @Inject constructor(
     private val repository: TransferRepository,
     @Dispatcher(AppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
 )  : ViewModel() {
+    private val _categoryListExpense = MutableStateFlow<List<CategoryData.Category>>(emptyList())
+    val categoryListExpense: StateFlow<List<CategoryData.Category>> get() = _categoryListExpense
+
+    private val _categoryListIncome = MutableStateFlow<List<CategoryData.Category>>(emptyList())
+    val categoryListIncome: StateFlow<List<CategoryData.Category>> get() = _categoryListIncome
 
     private val _addTransfer = MutableStateFlow(AddTransfer())
     val addTransfer: StateFlow<AddTransfer> get() = _addTransfer
@@ -47,7 +53,35 @@ class AddViewModel @Inject constructor(
     private val _imageUri = MutableStateFlow<Bitmap?>(null)
     val imageUri: StateFlow<Bitmap?> get() = _imageUri
 
+    fun setCategoryListExpense(list: List<CategoryData.Category>) {
+        _categoryListExpense.value = list
+    }
+    fun setCategoryListIncome(list: List<CategoryData.Category>) {
+        _categoryListIncome.value = list
+    }
 
+    fun getCategoryListExpense(): List<CategoryData.Category> {
+        return _categoryListExpense.value
+    }
+
+    fun getOneCategoryExpense(idCategory : Int): CategoryData.Category? {
+        return _categoryListExpense.value.find { it.id == idCategory }
+    }
+
+    fun setOneCategory(category: CategoryData.Category) {
+        val updatedList = _categoryListExpense.value.map {
+            if (it.id == category.id) {
+                it.copy(isCheck = true)
+            } else {
+                it.copy(isCheck = false)
+            }
+        }
+        _categoryListExpense.value = updatedList
+        Log.i("AddViewModel", "setOneCategory: ${_categoryListExpense.value}")
+    }
+    fun getCategoryListIncome(): List<CategoryData.Category> {
+        return _categoryListIncome.value
+    }
 
     fun setBitmap(bitmap: Bitmap) {
         _imageUri.value = bitmap
@@ -79,6 +113,8 @@ class AddViewModel @Inject constructor(
             null
         }
     }
+
+
 
     fun showDatePickerDialog(context: Context) {
         val calendar = Calendar.getInstance()

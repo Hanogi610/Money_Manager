@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.LocaleListCompat
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -14,7 +16,9 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.moneymanager.R
 import com.example.moneymanager.core.LanguageStart
 import com.example.moneymanager.core.checkLanguageInitialization
+import com.example.moneymanager.data.model.CategoryData
 import com.example.moneymanager.databinding.ActivityMainBinding
+import com.example.moneymanager.ui.add.AddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -22,6 +26,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
+    private val addViewModel: AddViewModel by viewModels()
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -30,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val categoryData = CategoryData()
+        addViewModel.setCategoryListExpense(categoryData.readJsonCategory(this, "default_categories_expense.json"))
+        addViewModel.setCategoryListIncome(categoryData.readJsonCategory(this, "default_categories_income.json"))
 
         // Check language initialization
         if (checkLanguageInitialization(this) == LanguageStart.NOT_INITIALIZED) {

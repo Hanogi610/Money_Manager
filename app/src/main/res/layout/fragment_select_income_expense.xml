@@ -6,7 +6,7 @@
     android:layout_marginTop="@dimen/margin_xxlarges"
     android:layout_marginLeft="@dimen/margin_medium"
     android:layout_marginRight="@dimen/margin_medium"
-    tools:context=".ui.select_category.Select_income_expenseFragment">
+    tools:context=".ui.select_category.SelectIncomeExpenseFragment">
 
     <RelativeLayout
         android:id="@+id/rlHeader"
@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
+        android:background="@drawable/customer_select_category"
         android:layout_below="@+id/rlHeader">
         <TextView
             android:id="@+id/tvIncome"
@@ -39,8 +40,7 @@
             android:layout_weight="1"
             android:text="@string/income"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/customer_select_category_income"
+            android:textColor="@color/black"
             android:textSize="12dp"
             android:padding="@dimen/padding_micro"
             android:layout_height="wrap_content"/>
@@ -57,10 +57,9 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vpCategory"
         android:layout_below="@+id/llIncomeExpense"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

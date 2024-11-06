@@ -1,70 +1,84 @@
 [
   {
+    "id": 1,
     "name": "Bills",
     "icon": "IconCategory/IconExpense/Bills.svg",
     "type": "Expense"
   },
   {
+    "id": 2,
     "name": "Clothing",
     "icon": "IconCategory/IconExpense/Clothing.svg",
     "type": "Expense"
   },
   {
+    "id": 3,
     "name": "Education",
     "icon": "IconCategory/IconExpense/Education.svg",
     "type": "Expense"
   },
   {
+    "id": 4,
     "name": "Entertainment",
     "icon": "IconCategory/IconExpense/Entertainment.svg",
     "type": "Expense"
   },
   {
+    "id": 5,
     "name": "Fitness",
     "icon": "IconCategory/IconExpense/Fitness.svg",
     "type": "Expense"
   },
   {
+    "id": 6,
     "name": "Food",
     "icon": "IconCategory/IconExpense/Food.svg",
     "type": "Expense"
   },
   {
+    "id": 7,
     "name": "Furniture",
     "icon": "IconCategory/IconExpense/Furniture.svg",
     "type": "Expense"
   },
   {
+    "id": 8,
     "name": "Gift",
     "icon": "IconCategory/IconExpense/Gift.svg",
     "type": "Expense"
   },
   {
+    "id": 9,
     "name": "Health",
     "icon": "IconCategory/IconExpense/Health.svg",
     "type": "Expense"
   },
   {
+    "id": 10,
     "name": "Pet",
     "icon": "IconCategory/IconExpense/Pet.svg",
     "type": "Expense"
   },
   {
+    "id": 11,
     "name": "Shopping",
     "icon": "IconCategory/IconExpense/Shopping.svg",
     "type": "Expense"
   },
   {
+    "id": 12,
     "name": "Transportation",
     "icon": "IconCategory/IconExpense/Transportation.svg",
     "type": "Expense"
   },
   {
+    "id": 13,
     "name": "Travel",
     "icon": "IconCategory/IconExpense/Travel.svg",
     "type": "Expense"
   },
   {
+    "id": 14,
     "name": "Other",
     "icon": "IconCategory/IconExpense/Other.svg",
     "type": "Expense"
