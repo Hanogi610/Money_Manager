@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneymanager.R
@@ -41,7 +42,7 @@ class WalletFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentWalletBinding.inflate(inflater, container, false)
 
-        val currentCurrency = mainViewModel.addingAccount.value.currency
+        val currentCurrency = mainViewModel.currentAccount.value!!.account.currency
         val currencySymbol = getString(currentCurrency.symbolRes)
 
         walletAdapter = WalletAdapter(requireContext(), currencySymbol, ::onWalletItemClick, ::onAddWalletClick)
@@ -52,7 +53,10 @@ class WalletFragment : Fragment() {
         binding.debtRecyclerView.adapter = debtAdapter
         binding.debtRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mainViewModel.currentAccount.value?.account?.id?.let { viewModel.getWallets(it) }
+        mainViewModel.currentAccount.value?.account?.id?.let {
+            viewModel.getWallets(it)
+            viewModel.getDebts(it)
+        }
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -88,7 +92,7 @@ class WalletFragment : Fragment() {
     }
 
     private fun onAddDebtClick() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_mainFragment_to_addDebtFragment)
     }
 
     private fun onAddWalletClick() {
