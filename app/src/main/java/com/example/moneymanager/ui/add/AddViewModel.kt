@@ -68,7 +68,11 @@ class AddViewModel @Inject constructor(
         return _categoryListExpense.value.find { it.id == idCategory }
     }
 
-    fun setOneCategory(category: CategoryData.Category) {
+    fun getOneCategoryIncome(idCategory : Int): CategoryData.Category? {
+        return _categoryListIncome.value.find { it.id == idCategory }
+    }
+
+    fun setOneCategoryExpense(category: CategoryData.Category) {
         val updatedList = _categoryListExpense.value.map {
             if (it.id == category.id) {
                 it.copy(isCheck = true)
@@ -77,8 +81,19 @@ class AddViewModel @Inject constructor(
             }
         }
         _categoryListExpense.value = updatedList
-        Log.i("AddViewModel", "setOneCategory: ${_categoryListExpense.value}")
     }
+
+    fun setOneCategoryIcome(category: CategoryData.Category) {
+        val updatedList = _categoryListIncome.value.map {
+            if (it.id == category.id) {
+                it.copy(isCheck = true)
+            } else {
+                it.copy(isCheck = false)
+            }
+        }
+        _categoryListIncome.value = updatedList
+    }
+
     fun getCategoryListIncome(): List<CategoryData.Category> {
         return _categoryListIncome.value
     }

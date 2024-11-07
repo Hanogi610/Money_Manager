@@ -2,67 +2,108 @@ package com.example.moneymanager.ui.select_category
 
 import SelectIncomeExpenseAdapter
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moneymanager.R
 import com.example.moneymanager.data.model.CategoryData
+import com.example.moneymanager.data.model.entity.enums.TransferType
 import com.example.moneymanager.databinding.FragmentSelectIncomeExpenseBinding
 import com.example.moneymanager.ui.add.AddViewModel
-import kotlinx.coroutines.launch
-import kotlin.properties.Delegates
 
 class SelectIncomeExpenseFragment : Fragment() {
     private var _binding: FragmentSelectIncomeExpenseBinding? = null
     private val binding get() = _binding!!
-    lateinit var selectIncomeExpenseAdapter : SelectIncomeExpenseAdapter;
+    private var typeExpense: String? = null
+    private var selectIncomeExpenseAdapter = SelectIncomeExpenseAdapter(listOf(),::clickRadioButtonIconCategory)
     private val viewModel: AddViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSelectIncomeExpenseBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         showData()
-        observeData()
+        setupListeners()
     }
 
-    fun observeData(){
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.categoryListExpense.collect() { value ->
-                    selectIncomeExpenseAdapter.updateData(value)
-                }
+    private fun setupListeners() {
+        binding.tvIncome.setOnClickListener {
+            updateUIForIncome()
+        }
+        binding.tvExpense.setOnClickListener {
+            updateUIForExpense()
+        }
+    }
+
+    private fun updateUIForIncome() {
+        binding.tvIncome.apply {
+            setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            setBackgroundResource(R.drawable.customer_select_category_income)
+        }
+        binding.tvExpense.apply {
+            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            setBackgroundResource(R.drawable.customer_select_category)
+        }
+        typeExpense = TransferType.Income.toString()
+        selectIncomeExpenseAdapter.updateData(viewModel.getCategoryListIncome())
+    }
+
+    private fun updateUIForExpense() {
+        binding.tvExpense.apply {
+            setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            setBackgroundResource(R.drawable.customer_select_category_expense)
+        }
+        binding.tvIncome.apply {
+            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            setBackgroundResource(R.drawable.customer_select_category)
+        }
+        typeExpense = TransferType.Expense.toString()
+        selectIncomeExpenseAdapter.updateData(viewModel.getCategoryListExpense())
+    }
+
+    private fun initView() {
+        typeExpense = arguments?.getString("type")
+        when (typeExpense) {
+            TransferType.Income.toString() -> updateUIForIncome()
+            else -> updateUIForExpense()
+        }
+    }
+
+    private fun clickRadioButtonIconCategory(categoryData: CategoryData.Category) {
+        if (!categoryData.isCheck) {
+            if (typeExpense == TransferType.Expense.toString()) {
+                viewModel.setOneCategoryExpense(categoryData)
+            } else {
+                viewModel.setOneCategoryIcome(categoryData)
             }
+            val bundle = bundleOf("id" to categoryData.id)
+            val destination = if (typeExpense == TransferType.Expense.toString()) {
+                R.id.addExpenseFragment
+            } else {
+                R.id.addIncomeFragment
+            }
+            findNavController().navigate(destination, bundle)
         }
     }
 
-    fun clickRadioButtonIconCategory(categoryData: CategoryData.Category){
-        if(categoryData.isCheck == false) {
-            viewModel.setOneCategory(categoryData)
-            var bundle = bundleOf("id" to categoryData.id)
-            findNavController().previousBackStackEntry?.savedStateHandle?.set("categoryBundle", bundle)
-            findNavController().popBackStack()
+    private fun showData() {
+        binding.vpCategory.apply {
+            adapter = selectIncomeExpenseAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
-    }
-
-    fun showData(){
-        selectIncomeExpenseAdapter = SelectIncomeExpenseAdapter(viewModel.getCategoryListExpense(),:: clickRadioButtonIconCategory )
-        binding.vpCategory.adapter = selectIncomeExpenseAdapter
-        binding.vpCategory.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     override fun onDestroyView() {

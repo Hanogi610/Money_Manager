@@ -21,6 +21,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.moneymanager.R
 import com.example.moneymanager.data.model.CategoryData
 import com.example.moneymanager.data.model.entity.AddTransfer
+import com.example.moneymanager.data.model.entity.Transfer
+import com.example.moneymanager.data.model.entity.enums.TransferType
 import com.example.moneymanager.databinding.FragmentAddExpenseBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -78,15 +80,16 @@ class AddExpenseFragment : Fragment() {
     fun selectCategory(){
         val navController = findNavController()
         binding.etCategory.setOnClickListener {
-            navController.navigate(R.id.selectIncomeExpenseFragment)
+            var bundle = bundleOf("type" to TransferType.Expense.toString())
+            navController.navigate(R.id.selectIncomeExpenseFragment,bundle)
         }
-
-        val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
-        savedStateHandle?.getLiveData<Bundle>("categoryBundle")?.observe(viewLifecycleOwner) { bundle ->
-            val id = bundle.getInt("id")
-            val category = viewModel.getOneCategoryExpense(id)
+        var bundle = arguments
+        var id = bundle?.getInt("id")
+        if(id != null) {
+            var category = viewModel.getOneCategoryExpense(id)
             binding.etCategory.setText(category?.name)
         }
+
     }
 
     fun selectWallet(){

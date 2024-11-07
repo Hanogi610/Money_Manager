@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +20,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.moneymanager.R
 import com.example.moneymanager.data.model.entity.AddTransfer
+import com.example.moneymanager.data.model.entity.enums.TransferType
 import com.example.moneymanager.databinding.FragmentAddIncomeBinding
 import kotlinx.coroutines.launch
 
@@ -76,7 +78,7 @@ class AddIncomeFragment : Fragment() {
                 if(linkimg == null){
                     linkimg = ""
                 }
-                val category = binding.spCategory.selectedItem.toString()
+                val category = binding.etCategory.text.toString()
                 val typeOfExpenditure = "Income"
                 val idWallet = 1L
                 val incomeAndExpense = AddTransfer(
@@ -184,13 +186,17 @@ class AddIncomeFragment : Fragment() {
     }
 
     fun selectCategory(){
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.category_options,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.spCategory.adapter = adapter
+        binding.etCategory.setOnClickListener {
+            val controller_nav = findNavController()
+            var bundle = bundleOf( "type" to TransferType.Income.toString())
+            controller_nav.navigate(R.id.selectIncomeExpenseFragment, bundle)
+        }
+
+        var bundle = arguments
+        var id = bundle?.getInt("id")
+        if(id != null) {
+            var category = viewModel.getOneCategoryIncome(id)
+            binding.etCategory.setText(category?.name)
         }
     }
 
