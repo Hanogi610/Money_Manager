@@ -160,19 +160,12 @@
         android:text="@string/category"
         android:layout_below="@+id/et_description"/>
 
-    <Spinner
-        android:id="@+id/sp_category"
+    <EditText
+        android:id="@+id/et_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_category"/>
 
-    <View
-        android:id="@+id/line_1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_height"
-        android:background="@color/black"
-        android:layout_margin="@dimen/margin_small"
-        android:layout_below="@id/sp_category"/>
 
     <TextView
         android:id="@+id/wallet"
@@ -181,7 +174,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wallet"
-        android:layout_below="@+id/line_1"/>
+        android:layout_below="@+id/et_category"/>
 
     <Spinner
         android:id="@+id/sp_wallet"
