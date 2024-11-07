@@ -76,6 +76,11 @@
         <item>Mobile Wallet</item>
     </string-array>
 
+    <string-array name="debt_type_options">
+        <item>Payable</item>
+        <item>Receivable</item>
+    </string-array>
+
     <string-array name="category_options">
         <item>Groceries</item>
         <item>Rent</item>
@@ -94,6 +99,13 @@
         <item>Camera</item>
         <item>Gallery</item>
     </string-array>
+    <string-array name="color_options">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+        <item>Purple</item>
+    </string-array>
     <string name="add_fab" translatable="false">Add FAB</string>
     <string name="manager">Manager (%1$d)</string>
     <string name="add_wallet">Add Wallet</string>
@@ -103,5 +115,10 @@
     <string name="add_goal">Add Goal</string>
     <string name="add_budget">Add Budget</string>
     <string name="budget">Budget</string>
-
+    <string name="who_do_you_lend_from">Who do you lend from?</string>
+    <string name="who_do_you_borrow_to">Who do you borrow to?</string>
+    <string name="what_was_it_for">What was it for?</string>
+    <string name="i_owe_s">I owe %1$s</string>
+    <string name="i_lend_s">I lend %1$s</string>
+    <string name="debt_transaction_name" translatable="false">%1$s: %2$s</string>
 </resources>

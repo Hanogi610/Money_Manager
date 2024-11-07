@@ -64,4 +64,10 @@
     <string name="add_goal">添加目标</string>
     <string name="add_budget">添加预算</string>
     <string name="budget">预算</string>
+    <string name="who_do_you_lend_from">你借给谁 ?</string>
+    <string name="who_do_you_borrow_to">你借给谁 ?</string>
+    <string name="what_was_it_for">这是什么用途？</string>
+    <string name="i_owe_s">我欠%1$s</string>
+    <string name="i_lend_s">我借出%1$s</string>
+
 </resources>

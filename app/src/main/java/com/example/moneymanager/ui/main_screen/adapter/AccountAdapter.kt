@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moneymanager.data.model.entity.AccountWithWallet
-import com.example.moneymanager.databinding.ItemAccountBinding
+import com.example.moneymanager.databinding.AccountItemBinding
 
 class AccountAdapter(
     private val accounts: List<AccountWithWallet>,
@@ -14,7 +14,7 @@ class AccountAdapter(
 ) : RecyclerView.Adapter<AccountAdapter.AccountViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountViewHolder {
-        val binding = ItemAccountBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = AccountItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AccountViewHolder(binding)
     }
 
@@ -27,7 +27,7 @@ class AccountAdapter(
         return if (accounts.isNotEmpty()) accounts.size else 0
     }
 
-    inner class AccountViewHolder(private val binding: ItemAccountBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class AccountViewHolder(private val binding: AccountItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(account: AccountWithWallet, isSelect: Boolean = false) {
             binding.accountName.text = account.account.nameAccount

@@ -3,7 +3,9 @@ package com.example.moneymanager.core
 import android.content.Context
 import androidx.annotation.ColorInt
 import com.example.moneymanager.data.model.entity.enums.Currency
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 // Convert Long to Date
 fun Long.toDate(): Date {
@@ -13,6 +15,33 @@ fun Long.toDate(): Date {
 // Convert Date to Long
 fun Date.toTimestamp(): Long {
     return this.time
+}
+
+fun String.toDateTimestamp(format: String = "dd/MM/yyyy"): Long {
+    val sdf = SimpleDateFormat(format, Locale.getDefault())
+    val date = sdf.parse(this)
+    return date?.time ?: 0L
+}
+
+// Extension function to convert time string to timestamp
+fun String.toTimeTimestamp(format: String = "HH:mm"): Long {
+    val sdf = SimpleDateFormat(format, Locale.getDefault())
+    val time = sdf.parse(this)
+    return time?.time ?: 0L
+}
+
+// Convert Long to formatted date string
+fun Long.toFormattedDateString(format: String = "yyyy-MM-dd"): String {
+    val date = this.toDate()
+    val dateFormatter = SimpleDateFormat(format, Locale.getDefault())
+    return dateFormatter.format(date)
+}
+
+// Convert Long to formatted time string
+fun Long.toFormattedTimeString(format: String = "HH:mm"): String {
+    val time = this.toDate()
+    val timeFormatter = SimpleDateFormat(format, Locale.getDefault())
+    return timeFormatter.format(time)
 }
 
 fun getCurrencyName(context: Context, currency: Currency): String {
@@ -39,8 +68,14 @@ object ColorHelper {
         return colorMap[colorId] ?: 0xFF000000.toInt() // Default to black if not found
     }
 
+    // Function to retrieve color ID by its value (color code)
+    fun getColorIdByValue(colorValue: Int): String? {
+        return colorMap.entries.find { it.value == colorValue }?.key
+    }
+
     // Optional: A function to retrieve all available color options as a list
     fun getAllColors(): List<Pair<String, Int>> {
         return colorMap.entries.map { it.key to it.value }
     }
 }
+

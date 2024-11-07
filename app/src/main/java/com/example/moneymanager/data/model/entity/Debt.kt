@@ -33,7 +33,8 @@ data class Debt(
     val date: Long,
     val time: Long,
     val description: String,
-    @ColumnInfo(name = "wallet_id") val walletId: Long
+    @ColumnInfo(name = "wallet_id") val walletId: Long,
+    @ColumnInfo(name = "color_id") val colorId: Int,
 ) : Transaction(id, name, amount, accountId)
 
 data class DebtDetail(

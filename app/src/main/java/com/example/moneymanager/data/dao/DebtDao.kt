@@ -18,6 +18,9 @@ interface DebtDao {
     @Query("SELECT * FROM debt WHERE account_id = :accountId")
     fun getDebtsByAccountId(accountId: Long): Flow<List<DebtDetail>>
 
+    @Query("SELECT * FROM debt WHERE id = :debtId")
+    fun getDebtDetailsByDebtId(debtId: Long): Flow<DebtDetail>
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun editDebt(debt: Debt)
 
