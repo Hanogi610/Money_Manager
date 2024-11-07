@@ -51,6 +51,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainFragment_to_debtDetailFragment"
+            app:destination="@id/debtDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -209,5 +216,30 @@
         tools:layout="@layout/fragment_add_debt" >
 
     </fragment>
+    <fragment
+        android:id="@+id/debtDetailFragment"
+        android:name="com.example.moneymanager.ui.wallet_screen.debt_detail.DebtDetailFragment"
+        android:label="fragment_debt_detail"
+        tools:layout="@layout/fragment_debt_detail" >
+        <action
+            android:id="@+id/action_debtDetailFragment_to_addDebtTransactionFragment"
+            app:destination="@id/addDebtTransactionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_debtDetailFragment_to_addDebtFragment"
+            app:destination="@id/addDebtFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addDebtTransactionFragment"
+        android:name="com.example.moneymanager.ui.wallet_screen.add_debt_transaction.AddDebtTransactionFragment"
+        android:label="fragment_add_debt_transaction"
+        tools:layout="@layout/fragment_add_debt_transaction" />
 
 </navigation>

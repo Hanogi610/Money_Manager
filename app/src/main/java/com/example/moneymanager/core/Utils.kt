@@ -30,6 +30,20 @@ fun String.toTimeTimestamp(format: String = "HH:mm"): Long {
     return time?.time ?: 0L
 }
 
+// Convert Long to formatted date string
+fun Long.toFormattedDateString(format: String = "yyyy-MM-dd"): String {
+    val date = this.toDate()
+    val dateFormatter = SimpleDateFormat(format, Locale.getDefault())
+    return dateFormatter.format(date)
+}
+
+// Convert Long to formatted time string
+fun Long.toFormattedTimeString(format: String = "HH:mm"): String {
+    val time = this.toDate()
+    val timeFormatter = SimpleDateFormat(format, Locale.getDefault())
+    return timeFormatter.format(time)
+}
+
 fun getCurrencyName(context: Context, currency: Currency): String {
     return context.getString(currency.nameRes)
 }
@@ -54,8 +68,14 @@ object ColorHelper {
         return colorMap[colorId] ?: 0xFF000000.toInt() // Default to black if not found
     }
 
+    // Function to retrieve color ID by its value (color code)
+    fun getColorIdByValue(colorValue: Int): String? {
+        return colorMap.entries.find { it.value == colorValue }?.key
+    }
+
     // Optional: A function to retrieve all available color options as a list
     fun getAllColors(): List<Pair<String, Int>> {
         return colorMap.entries.map { it.key to it.value }
     }
 }
+

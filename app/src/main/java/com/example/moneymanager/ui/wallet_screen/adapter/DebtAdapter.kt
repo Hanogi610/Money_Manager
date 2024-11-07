@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moneymanager.R
 import com.example.moneymanager.data.model.entity.Debt
+import com.example.moneymanager.data.model.entity.DebtDetail
+import com.example.moneymanager.data.model.entity.enums.DebtActionType
 import com.example.moneymanager.data.model.entity.enums.DebtType
 import com.example.moneymanager.databinding.AddNewItemBinding
 import com.example.moneymanager.databinding.DebtItemBinding
@@ -17,7 +19,7 @@ class DebtAdapter(
     private val onItemClick: (Debt) -> Unit,
     private val onAddNewClick: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var debts: List<Debt> = emptyList()
+    private var debts: List<DebtDetail> = emptyList()
 
     override fun getItemViewType(position: Int): Int {
         return if (position == debts.size) TYPE_ADD_NEW else TYPE_ITEM
@@ -55,20 +57,23 @@ class DebtAdapter(
 
     inner class DebtViewHolder(val binding: DebtItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(debt: Debt) {
-            binding.debtName.text = if (debt.type == DebtType.PAYABLE) context.getString(
-                R.string.i_owe_s,
-                debt.name
-            ) else context.getString(R.string.i_lend_s, debt.name)
-            binding.debtDescription.text = debt.description
-            binding.debtAmount.text = context.getString(
-                R.string.money_amount, currentCurrencySymbol, debt.amount
-            )
-            binding.root.setOnClickListener { onItemClick(debt) }
+        fun bind(debt: DebtDetail) {
+            binding.debtName.text = if (debt.debt.type == DebtType.PAYABLE) context.getString(
+                R.string.i_owe_s, debt.debt.name
+            ) else context.getString(R.string.i_lend_s, debt.debt.name)
+            binding.debtDescription.text = debt.debt.description
+            val currentAmount =
+                debt.debt.amount - debt.transactions.filter { it.action == DebtActionType.REPAYMENT }
+                    .sumOf { it.amount } + debt.transactions.filter { it.action == DebtActionType.INTEREST || it.action == DebtActionType.DEBT_INCREASE }
+                    .sumOf { it.amount }
+            binding.debtAmount.text =
+                context.getString(R.string.money_amount, currentCurrencySymbol, currentAmount)
+
+            binding.root.setOnClickListener { onItemClick(debt.debt) }
         }
     }
 
-    fun setDebts(debts: List<Debt>) {
+    fun setDebts(debts: List<DebtDetail>) {
         val diffCallback = DebtDiffCallback(this.debts, debts)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         this.debts = debts
@@ -82,13 +87,13 @@ class DebtAdapter(
 }
 
 class DebtDiffCallback(
-    private val oldList: List<Debt>, private val newList: List<Debt>
+    private val oldList: List<DebtDetail>, private val newList: List<DebtDetail>
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldList.size
     override fun getNewListSize(): Int = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
+        return oldList[oldItemPosition].debt.id == newList[newItemPosition].debt.id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

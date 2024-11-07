@@ -86,9 +86,9 @@ class WalletFragment : Fragment() {
         return binding.root
     }
 
-    private fun onDebtItemClick(debtDetail: Debt) {
-        mainViewModel.setCurrentDebt(debtDetail)
-        // Navigate to the debt detail screen
+    private fun onDebtItemClick(debt: Debt) {
+        mainViewModel.setCurrentDebt(debt)
+        findNavController().navigate(R.id.action_mainFragment_to_debtDetailFragment)
     }
 
     private fun onAddDebtClick() {

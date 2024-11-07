@@ -55,7 +55,7 @@ class MainViewModel @Inject constructor(
         _currentWallet.value = wallet
     }
 
-    fun setCurrentDebt(debt: Debt) {
+    fun setCurrentDebt(debt: Debt?) {
         _currentDebt.value = debt
     }
 

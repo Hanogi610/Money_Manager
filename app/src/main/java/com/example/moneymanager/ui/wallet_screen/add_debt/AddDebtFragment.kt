@@ -49,6 +49,10 @@ class AddDebtFragment : Fragment() {
     ): View {
         _binding = FragmentAddDebtBinding.inflate(inflater, container, false)
 
+        binding.backArrowButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         // Set up the spinner with the enum values
         val debtTypeAdapter = ArrayAdapter(
             requireContext(),
@@ -121,45 +125,33 @@ class AddDebtFragment : Fragment() {
         binding.colorSpinner.adapter = colorAdapter
         binding.colorSpinner.setSelection(0) // Set default value as first option
 
-        // Map the selected item to the color
-        binding.colorSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedColor = colorOptions[position]
-                val colorInt = ColorHelper.getColorById(selectedColor)
-                // Use the colorInt as needed
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Handle case when nothing is selected
-            }
-        }
-
         // Add TextWatchers to EditTexts
         binding.editTextName.addTextChangedListener(textWatcher)
         binding.editTextDescription.addTextChangedListener(textWatcher)
         binding.editTextAmount.addTextChangedListener(textWatcher)
-        binding.saveButton.setOnClickListener {
-            val selectedWalletName = binding.walletSpinner.selectedItem.toString()
-            val selectedWallet = mainViewModel.accounts.value.flatMap { it.wallets }.find { it.name == selectedWalletName }
-            val selectedWalletId = selectedWallet?.id ?: 0 // Default to 0 if not found
 
-            val selectedColorName = binding.colorSpinner.selectedItem.toString()
-            val selectedColorId = ColorHelper.getColorById(selectedColorName)
-
-            val debt = Debt(
-                name = binding.editTextName.text.toString(),
-                amount = binding.editTextAmount.text.toString().toDouble(),
-                accountId = mainViewModel.currentAccount.value!!.account.id, // Set the account ID as needed
-                type = DebtType.valueOf(binding.spinnerDebtType.selectedItem.toString()),
-                date = binding.dateTextView.text.toString().toDateTimestamp(),
-                time = binding.timeTextView.text.toString().toTimeTimestamp(),
-                description = binding.editTextDescription.text.toString(),
-                walletId = selectedWalletId, // Set the wallet ID
-                colorId = selectedColorId // Set the color ID
-            )
-            viewModel.addDebt(debt)
-            findNavController().popBackStack()
-
+        // Check if the currentDebt is null or not for adding/editing
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.currentDebt.collect { currentDebt: Debt? ->
+                    if (currentDebt != null) {
+                        // Editing an existing debt
+                        populateFieldsWithDebtData(currentDebt)
+                        binding.saveButton.setOnClickListener {
+                            val updatedDebt = buildDebtFromFields(currentDebt.id) // Use currentDebt.id for update
+                            viewModel.editDebt(updatedDebt)
+                            findNavController().popBackStack()
+                        }
+                    } else {
+                        // Adding a new debt
+                        binding.saveButton.setOnClickListener {
+                            val newDebt = buildDebtFromFields()
+                            viewModel.addDebt(newDebt)
+                            findNavController().popBackStack()
+                        }
+                    }
+                }
+            }
         }
 
         return binding.root
@@ -182,6 +174,55 @@ class AddDebtFragment : Fragment() {
         val time = binding.timeTextView.text.toString()
 
         binding.saveButton.isEnabled = name.isNotEmpty() && description.isNotEmpty() && amount.isNotEmpty() && date.isNotEmpty() && time.isNotEmpty()
+    }
+
+    private fun populateFieldsWithDebtData(debt: Debt) {
+        binding.editTextName.setText(debt.name)
+        binding.editTextDescription.setText(debt.description)
+        binding.editTextAmount.setText(getString(R.string.money_amount, "", debt.amount))
+        binding.dateTextView.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(debt.date)
+        binding.timeTextView.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(debt.time)
+        binding.spinnerDebtType.setSelection(DebtType.valueOf(debt.type.name).ordinal)
+        binding.walletSpinner.setSelection(getWalletIndex(debt.walletId))
+        binding.colorSpinner.setSelection(getColorIndex(debt.colorId))
+    }
+
+    private fun getWalletIndex(walletId: Long): Int {
+        val wallets = mainViewModel.currentAccount.value?.wallets.orEmpty()
+        return wallets.indexOfFirst { it.id == walletId }.takeIf { it >= 0 } ?: 0
+    }
+
+    private fun getColorIndex(colorId: Int): Int {
+        // Get the color name from the color value using the helper function
+        val colorName = ColorHelper.getColorIdByValue(colorId)
+
+        // If the color name is found, find its index in the color options array
+        val colorOptions = resources.getStringArray(R.array.color_options)
+        return colorName?.let {
+            colorOptions.indexOf(it).takeIf { it >= 0 } ?: 0 // Return the index or default to 0
+        } ?: 0 // Default to 0 if color name is not found
+    }
+
+    private fun buildDebtFromFields(debtId: Long? = null): Debt {
+        val selectedWalletName = binding.walletSpinner.selectedItem.toString()
+        val selectedWallet = mainViewModel.accounts.value.flatMap { it.wallets }.find { it.name == selectedWalletName }
+        val selectedWalletId = selectedWallet?.id ?: 0 // Default to 0 if not found
+
+        val selectedColorName = binding.colorSpinner.selectedItem.toString()
+        val selectedColorId = ColorHelper.getColorById(selectedColorName)
+
+        return Debt(
+            id = debtId ?: 0, // Use existing debt id if editing, otherwise 0 for new debt
+            name = binding.editTextName.text.toString(),
+            amount = binding.editTextAmount.text.toString().replace(",",".").toDouble(),
+            accountId = mainViewModel.currentAccount.value!!.account.id, // Set the account ID as needed
+            type = DebtType.valueOf(binding.spinnerDebtType.selectedItem.toString()),
+            date = binding.dateTextView.text.toString().toDateTimestamp(),
+            time = binding.timeTextView.text.toString().toTimeTimestamp(),
+            description = binding.editTextDescription.text.toString(),
+            walletId = selectedWalletId, // Set the wallet ID
+            colorId = selectedColorId // Set the color ID
+        )
     }
 
     override fun onDestroy() {

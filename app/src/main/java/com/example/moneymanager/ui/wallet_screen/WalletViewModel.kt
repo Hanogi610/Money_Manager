@@ -3,6 +3,7 @@ package com.example.moneymanager.ui.wallet_screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moneymanager.data.model.entity.Debt
+import com.example.moneymanager.data.model.entity.DebtDetail
 import com.example.moneymanager.data.model.entity.Wallet
 import com.example.moneymanager.data.repository.DebtRepository
 import com.example.moneymanager.data.repository.WalletRepository
@@ -25,8 +26,8 @@ class WalletViewModel @Inject constructor(
     private val _wallets = MutableStateFlow<List<Wallet>>(emptyList())
     val wallets: StateFlow<List<Wallet>> get() = _wallets
 
-    private val _debts = MutableStateFlow<List<Debt>>(emptyList())
-    val debts: StateFlow<List<Debt>> get() = _debts
+    private val _debts = MutableStateFlow<List<DebtDetail>>(emptyList())
+    val debts: StateFlow<List<DebtDetail>> get() = _debts
 
     fun getWallets(accountId: Long) {
         viewModelScope.launch {
